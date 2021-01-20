@@ -7,18 +7,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 MONGO_URL=os.getenv("MONGO_URL")
-dbNAME=os.getenv("dbNAME")
-collection1=os.getenv("collection1")
-collection2=os.getenv("collection2")
-collection3=os.getenv("collection3")
-print(MONGO_URL)
+
 
 def pushup(idd,time,message):
     
     cluster=MongoClient(MONGO_URL)
-    db=cluster[dbNAME]
-    collection=db[collection1]
-    collection_online=db[collection2]
+    db=cluster["109-1-web-programming"]
+    collection=db["access"]
+    collection_online=db["online"]
     post={"stdID":idd, "time":time, "purpose":message, "direction":"in"}
     collection.insert(post)
     post_online={"stdID":idd, "EntryTime":time, "Purpose":message}
@@ -48,19 +44,19 @@ def pushup(idd,time,message):
     print(collection.find().next())
 def verify(idd):
     cluster=MongoClient(MONGO_URL)
-    db=cluster[dbNAME]
-    collection=db[collection1]
-    collection_online=db[collection2]
-    collection_register=db[collection3]
+    db=cluster["109-1-web-programming"]
+    collection=db["access"]
+    collection_online=db["online"]
+    collection_register=db["Register"]
     if(collection_register.find({"stdID":idd}).count()>0):
         return True
     else:
         return False
 def verifyy(idd):
     cluster=MongoClient(MONGO_URL)
-    db=cluster[dbNAME]
-    collection=db[collection1]
-    collection_online=db[collection2]
+    db=cluster["109-1-web-programming"]
+    collection=db["access"]
+    collection_online=db["online"]
     if(collection_online.find({"stdID":idd}).count()>0):
         return False
     else:

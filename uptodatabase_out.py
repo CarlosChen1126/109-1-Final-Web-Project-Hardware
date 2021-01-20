@@ -12,7 +12,7 @@ print(MONGO_URL)
 
 def pushup(idd,time):
     
-    cluster=MongoClient()
+    cluster=MongoClient(MONGO_URL)
     db=cluster["109-1-web-programming"]
     collection=db["access"]
     collection_online=db["online"]
@@ -24,7 +24,7 @@ def pushup(idd,time):
     collection_online.delete_one(delete)
 
 def verify(idd):
-    cluster=MongoClient("mongodb+srv://web-programming:WebProgrammingForFinalProject@access-control-system.ce7oy.mongodb.net/109-1-web-programming?retryWrites=true&w=majority")
+    cluster=MongoClient(MONGO_URL)
     db=cluster["109-1-web-programming"]
     collection=db["access"]
     collection_register=db["Register"]
