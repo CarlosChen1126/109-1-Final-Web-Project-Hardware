@@ -1,4 +1,6 @@
 # 109-1-Final-Web-Project-Hardware
+## 目的
+for web-programming final project hardware.
 
 ## 使用方法
 
